@@ -1,0 +1,25 @@
+# Environment
+.env
+
+# Compiled binaries
+*.exe
+aiof
+aiof_server
+test_genai
+
+# Stray directories
+~/
+.aiof/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies
+node_modules/
+venv/
+.venv/
+
+# Go
+coverage.out
+*.test

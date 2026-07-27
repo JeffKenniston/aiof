@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package orchestrator.v1;
+
+option go_package = "aiof/internal/gen/orchestrator/v1;orchestratorv1";
+
+// Document represents the WAL mutation state sent over the wire.
+message Document {
+  string id = 1;
+  string document_type = 2;
+  bytes payload = 3; // ADR-04: payload is raw bytes for two-pass deserialization
+  int64 updated_at = 4;
+  bool is_deleted = 5; // Corresponds to _deleted
+  
+  // TOKI Bitemporal tracking
+  int64 valid_time_start = 6;
+  int64 valid_time_end = 7;
+  int64 system_time = 8;
+  bytes provenance = 9;
+}
+
+// PullRequest requests state sync since a specific WAL timestamp.
+message PullRequest {
+  int64 since_updated_at = 1;
+  int32 limit = 2;
+}
+
+// PullResponse returns the deterministic history of state mutations.
+message PullResponse {
+  repeated Document documents = 1;
+}
+
+// PushRequest pushes local-first frontend mutations into the WAL.
+message PushRequest {
+  repeated Document documents = 1;
+}
+
+// PushResponse acknowledges receipt and conflict resolution.
+message PushResponse {
+  bool success = 1;
+}
+
+// PullStreamRequest initiates a multiplexed stream of live events.
+message PullStreamRequest {
+  int64 since_updated_at = 1;
+}
+
+// PullStreamResponse streams individual mutations as they occur.
+message PullStreamResponse {
+  Document document = 1;
+}
+
+// OrchestratorService implements Phase 1.3 multiplexed streaming.
+service OrchestratorService {
+  // Pull implements the pullHandler for deterministic WAL recovery.
+  rpc Pull(PullRequest) returns (PullResponse);
+  
+  // Push implements the pushHandler for incoming state mutations.
+  rpc Push(PushRequest) returns (PushResponse);
+  
+  // PullStream implements the pullStream endpoint for zero-latency HTTP/3 streaming.
+  rpc PullStream(PullStreamRequest) returns (stream PullStreamResponse);
+}
