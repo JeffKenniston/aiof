@@ -23,3 +23,12 @@ venv/
 # Go
 coverage.out
 *.test
+
+# Local AI Model Weights / Large Binaries
+local/**/*.bin
+local/**/*.safetensors
+local/**/*.gguf
+local/**/*.onnx
+local/**/*.pt
+local/**/*.pth
+
