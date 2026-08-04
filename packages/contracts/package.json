@@ -1,0 +1,22 @@
+{
+  "name": "@aiof/contracts",
+  "version": "0.2.0-dev",
+  "private": true,
+  "main": "./gen/proto/orchestrator/v1/orchestrator_connect.js",
+  "types": "./gen/proto/orchestrator/v1/orchestrator_connect.d.ts",
+  "exports": {
+    ".": {
+      "types": "./gen/proto/orchestrator/v1/orchestrator_connect.d.ts",
+      "default": "./gen/proto/orchestrator/v1/orchestrator_connect.js"
+    },
+    "./pb": {
+      "types": "./gen/proto/orchestrator/v1/orchestrator_pb.d.ts",
+      "default": "./gen/proto/orchestrator/v1/orchestrator_pb.js"
+    }
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.10.0",
+    "@connectrpc/connect": "^1.6.0",
+    "@connectrpc/connect-web": "^1.6.0"
+  }
+}

@@ -1,0 +1,14 @@
+version: v1
+plugins:
+  - plugin: go
+    out: ../../apps/daemon/internal/gen
+    opt: module=aiof/internal/gen
+  - plugin: connect-go
+    out: ../../apps/daemon/internal/gen
+    opt: module=aiof/internal/gen
+  - plugin: es
+    out: ../../apps/client/src/gen
+    opt: target=ts
+  - plugin: connect-es
+    out: ../../apps/client/src/gen
+    opt: target=ts

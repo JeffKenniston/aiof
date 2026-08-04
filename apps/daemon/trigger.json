@@ -1,0 +1,3 @@
+{
+  "prompt": "Please prove and verify the following theorem. We must refactor and benchmark the architecture to optimize and analyze the diff of the ast. Solve the invariant to prevent deadlock and race conditions. {{{{{{{{{{ }}}}}}}}}} ```text\ncode\n```"
+}

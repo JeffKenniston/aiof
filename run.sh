@@ -4,11 +4,10 @@
 
 [ -f .env ] && set -a && source .env && set +a
 
-if [ ! -f ./aiof_server ] || [ "$1" == "--build" ]; then
-    go build -o aiof_server cmd/aiof/*.go
-fi
+mkdir -p bin
+cd apps/daemon && go build -o ../../bin/aiof ./cmd/aiof/main.go && cd ../..
 
 export DATABASE_URL="${DATABASE_URL:-postgres://postgres:postgres@localhost:5432/aiof?sslmode=disable}"
 
 echo "Starting AIOF Orchestrator..."
-env GEMINI_API_KEY="$GEMINI_API_KEY" DATABASE_URL="$DATABASE_URL" ./aiof_server start
+env GEMINI_API_KEY="$GEMINI_API_KEY" DATABASE_URL="$DATABASE_URL" ./bin/aiof "$@"

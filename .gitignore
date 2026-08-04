@@ -1,34 +1,44 @@
-# Environment
+# Environment & Local Secrets
 .env
+.env.local
+*.env
 
-# Compiled binaries
+# Compiled Binaries & Test Artifacts
 *.exe
+*.exe.test
+*.out
+*.test
+bin/
 aiof
+aiof.exe
+main.exe
 aiof_server
 test_genai
+coverage.out
 
-# Stray directories
-~/
+# Virtual Environments (Standardized on .venv)
+.venv/
+venv/
+ENV/
+env/
+
+# Runtime Dirs & Caches
 .aiof/
+web/dist/
+web/node_modules/
+node_modules/
 
-# OS
+# Local Model Weights & Cache Directories
+local/
+qwen2.5_coder_32b_ov/
+*.bin
+*.safetensors
+*.gguf
+*.onnx
+*.pt
+*.pth
+
+# Operating System Files
 .DS_Store
 Thumbs.db
-
-# Dependencies
-node_modules/
-venv/
-.venv/
-
-# Go
-coverage.out
-*.test
-
-# Local AI Model Weights / Large Binaries
-local/**/*.bin
-local/**/*.safetensors
-local/**/*.gguf
-local/**/*.onnx
-local/**/*.pt
-local/**/*.pth
-
+*.tmp
