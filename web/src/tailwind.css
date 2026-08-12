@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+/* Vendor CSS that must be preserved */
+@import "@xterm/xterm/css/xterm.css";
+@import "@xyflow/react/dist/style.css";
+
+:root {
+  /* Fluid font scaling via viewport clamping */
+  --text-xs: clamp(0.7rem, 0.62rem + 0.3vw, 0.85rem);
+  --text-sm: clamp(0.78rem, 0.7rem + 0.35vw, 0.95rem);
+  --text-base: clamp(0.88rem, 0.8rem + 0.4vw, 1.1rem);
+  --text-lg: clamp(1.02rem, 0.92rem + 0.5vw, 1.3rem);
+  --text-xl: clamp(1.15rem, 1.02rem + 0.6vw, 1.55rem);
+  --text-2xl: clamp(1.4rem, 1.25rem + 0.8vw, 2.0rem);
+
+  /* Fluid layout offsets and paddings */
+  --spacing-fluid-xs: clamp(4px, 2px + 0.4vw, 8px);
+  --spacing-fluid-sm: clamp(8px, 4px + 0.8vw, 16px);
+  --spacing-fluid-md: clamp(12px, 8px + 1.2vw, 24px);
+  --spacing-fluid-lg: clamp(16px, 12px + 1.6vw, 32px);
+  
+  --spacing-panel-gap: clamp(8px, 4px + 0.5vh, 14px);
+}
+
+@theme {
+  /* Low-fatigue premium dark theme palette */
+  --color-surface-base: #090d16;
+  --color-surface-raised: #101622;
+  --color-surface-overlay: #1b2330;
+  --color-surface-glass: rgba(16, 22, 34, 0.65);
+  
+  /* Borders */
+  --color-border-subtle: rgba(255, 255, 255, 0.05);
+  --color-border-default: rgba(255, 255, 255, 0.09);
+  --color-border-active: rgba(59, 130, 246, 0.45);
+  
+  /* Text */
+  --color-text-primary: #f3f4f6;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+  
+  /* Accent Colors */
+  --color-accent-blue: #3b82f6;
+  --color-accent-green: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-red: #ef4444;
+  --color-accent-purple: #8b5cf6;
+  
+  /* Severity scale */
+  --color-severity-info: #3b82f6;
+  --color-severity-warn: #f59e0b;
+  --color-severity-error: #ef4444;
+  --color-severity-debug: #6b7280;
+  
+  /* Spacing overrides */
+  --spacing-panel-padding: 12px;
+  
+  /* Radius */
+  --radius-panel: 10px;
+  --radius-button: 6px;
+  --radius-pill: 9999px;
+  
+  /* Premium glows and shadows */
+  --shadow-panel: 0 4px 16px -4px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 12px 40px -6px rgba(0, 0, 0, 0.7);
+  
+  /* Typography */
+  --font-sans: 'Inter', 'system-ui', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  /* Fluid typographic scaling overrides */
+  --font-size-xs: var(--text-xs);
+  --font-size-sm: var(--text-sm);
+  --font-size-base: var(--text-base);
+  --font-size-lg: var(--text-lg);
+  --font-size-xl: var(--text-xl);
+  --font-size-2xl: var(--text-2xl);
+
+  /* Transitions */
+  --transition-fast: 120ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-smooth: 280ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  /* Z-index scale */
+  --z-sidebar: 40;
+  --z-commandbar: 30;
+  --z-panel: 10;
+  --z-overlay: 50;
+  --z-modal: 60;
+  --z-toast: 70;
+}
+
+/* Global resets for the app shell */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--color-surface-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU Hardware Acceleration Promotion */
+.gpu-accelerated {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Minimalist scrollbars for reducing mental fatigue */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  transition: background 200ms;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.25);
+}
+
+/* Panel resize handle styling */
+.resize-handle {
+  position: absolute;
+  z-index: 20;
+  transition: background-color var(--transition-fast);
+}
+.resize-handle:hover {
+  background-color: var(--color-accent-blue);
+}
+.resize-handle-horizontal {
+  width: 4px;
+  cursor: col-resize;
+  top: 0;
+  bottom: 0;
+}
+.resize-handle-vertical {
+  height: 4px;
+  cursor: row-resize;
+  left: 0;
+  right: 0;
+}
+
+/* ─── Engineering Workspace Overrides ─── */
+.engineering-workspace .panel-grid {
+  padding: 12px;
+}
+
+.engineering-workspace .panel-shell {
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.3);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.engineering-workspace .panel-shell:hover {
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.4);
+}
+
+.engineering-workspace .panel-chrome {
+  background: transparent;
+}
+
+/* ─── Global Panel Softening ─── */
+.panel-shell {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 12px -4px rgba(0, 0, 0, 0.25);
+}
+

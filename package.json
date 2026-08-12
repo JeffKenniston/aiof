@@ -1,15 +1,6 @@
 {
-  "name": "aiof-monorepo",
-  "private": true,
-  "version": "0.2.0-dev",
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint"
-  },
-  "devDependencies": {
+  "dependencies": {
     "@bufbuild/protoc-gen-es": "^1.10.1",
-    "@connectrpc/protoc-gen-connect-es": "^1.7.0",
-    "turbo": "^2.4.0"
+    "@connectrpc/protoc-gen-connect-es": "^1.7.0"
   }
 }
