@@ -1,6 +1,6 @@
 {
   "dbString": "postgres://...",
-  "executionModel": "gemini-3.5-flash",
+  "executionModel": "gemini-3.8-flash",
   "planningModel": "gemini-3.1-pro-preview",
   "syncToDisk": true,
   "validatorEnabled": true
