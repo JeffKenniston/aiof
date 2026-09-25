@@ -14,9 +14,7 @@ You are operating within the Antigravity 2.0 CLI framework. Your primary directi
 
 ## Project Documentation
 The following core documents define the project's vision, architecture, and schedule. They must be referenced to ensure alignment:
-* **[Blueprint.md](file:///home/jeff/Development/Projects/aiof/docs/Blueprint.md):** Defines the system component blueprints and high-level architecture layers (Ingestion, Agentic Orchestration, Sandbox Execution, LLM Gateway).
-* **[ADR.md](file:///home/jeff/Development/Projects/aiof/docs/ADR.md):** Architecture Decision Records. Documents the core technical choices (e.g., Go 1.23 middleware, SGLang inference, Connect RPC, Two-Pass Deserialization) and their associated trade-offs.
-* **[Roadmap.md](file:///home/jeff/Development/Projects/aiof/docs/Roadmap.md):** The agile development roadmap outlining phased implementation steps (Phase 1: Core Runtime, Phase 2: Agent Interfaces, Phase 3: Sandbox Integration).
+* **[ARCHITECTURE.md](file:///home/jeff/projects/aiof/docs/ARCHITECTURE.md):** Consolidated architecture documentation defining system component blueprints (Ingestion, Agentic Orchestration, Sandbox Execution, LLM Gateway), Architecture Decision Records (ADRs 1–6), and Agile Development Roadmap (Phases 1–6).
 
 ## Custom Commands
 * **"dev server" (or similar):** When the user asks to start the dev server, you MUST first kill any currently running dev servers, then concurrently start the Vite frontend server using `npm run dev` in `/web` and the Go backend server (e.g. `./run.sh` in the root directory).
